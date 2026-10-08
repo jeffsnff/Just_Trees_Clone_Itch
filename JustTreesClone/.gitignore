@@ -1,0 +1,192 @@
+# ------------------------------------------------------------
+# .NET / C# build output
+# ------------------------------------------------------------
+
+bin/
+obj/
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+*.dll
+*.exe
+*.pdb
+*.mdb
+*.app
+*.msi
+*.nupkg
+*.snupkg
+
+# Keep published/exported builds out of source control
+publish/
+Published/
+dist/
+Dist/
+release/
+ReleaseBuilds/
+itch/
+itch-build/
+itch-builds/
+ItchBuild/
+ItchBuilds/
+
+
+# ------------------------------------------------------------
+# Rider / JetBrains
+# ------------------------------------------------------------
+
+.idea/
+*.sln.iml
+
+
+# ------------------------------------------------------------
+# Visual Studio / VS Code
+# ------------------------------------------------------------
+
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+
+# ------------------------------------------------------------
+# MonoGame / KNI content pipeline
+# ------------------------------------------------------------
+
+# Content pipeline intermediate/output files
+*.xnb
+*.mgcb~
+*.mgcontent
+
+# MonoGame/KNI content build cache/output
+Content/bin/
+Content/obj/
+**/Content/bin/
+**/Content/obj/
+
+# If you use a custom content output folder, ignore generated content there too
+**/Content/Output/
+**/Content/Intermediate/
+
+
+# ------------------------------------------------------------
+# NuGet
+# ------------------------------------------------------------
+
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Usually keep these committed if present:
+# packages.config
+# *.csproj
+# Directory.Packages.props
+# NuGet.config
+
+
+# ------------------------------------------------------------
+# Logs and diagnostics
+# ------------------------------------------------------------
+
+*.log
+*.tlog
+*.binlog
+TestResults/
+coverage/
+coverage.xml
+*.coverage
+*.coveragexml
+
+
+# ------------------------------------------------------------
+# OS files
+# ------------------------------------------------------------
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+.Trashes
+.Spotlight-V100
+.fseventsd
+
+
+# ------------------------------------------------------------
+# Temporary files
+# ------------------------------------------------------------
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+.cache/
+temp/
+tmp/
+
+
+# ------------------------------------------------------------
+# itch.io / Butler
+# ------------------------------------------------------------
+
+# Butler credentials should never be committed
+.butler/
+butler_creds
+.credentials
+
+# Local itch app data/cache if accidentally created in project
+.itch/
+itchio/
+
+
+# ------------------------------------------------------------
+# Archives / packaged game builds
+# ------------------------------------------------------------
+
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+
+
+# ------------------------------------------------------------
+# Save data / local game data
+# ------------------------------------------------------------
+
+Saves/
+SaveData/
+save/
+saves/
+*.sav
+*.save
+
+
+# ------------------------------------------------------------
+# Environment files / local secrets
+# ------------------------------------------------------------
+
+.env
+.env.*
+!.env.example
+secrets.json
+appsettings.Local.json
+appsettings.*.Local.json

@@ -1,0 +1,103 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+using Just_Trees_Clone.Objects.Helper;
+
+namespace Just_Trees_Clone.Objects.Player
+{
+  internal class Player
+  {
+    public float XCoord { get; private set; }
+    public float YCoord { get; private set; }
+    private float Speed { get; set; }
+    public PlayerState State { get; private set; }
+
+    public Player(ContentManager content)
+    {
+      XCoord = 0;
+      YCoord = 0;
+      Speed = 5;
+      State = PlayerState.Idel;
+    }
+
+
+    public Rectangle GetBounds()
+    {
+      return new Rectangle((int)XCoord, (int)YCoord, 64, 64);
+    }
+
+    private void Move()
+    {
+      KeyboardState currentKeyboardState = Keyboard.GetState();
+      MouseState currentMouseState = Mouse.GetState();
+      GamePadState currentGamePadState = GamePad.GetState(PlayerIndex.One);
+      float horizontalMovement = currentGamePadState.ThumbSticks.Left.X;
+      float verticalMovement = currentGamePadState.ThumbSticks.Left.Y;
+      
+      if (currentGamePadState.Buttons.X != ButtonState.Pressed && 
+          currentGamePadState.Buttons.A != ButtonState.Pressed &&
+          currentKeyboardState.IsKeyUp(Keys.F) &&
+          currentMouseState.LeftButton != ButtonState.Pressed
+          )
+        State = PlayerState.Idel;
+      
+      
+      if (State == PlayerState.Idel)
+      {
+        if (horizontalMovement < 0 || 0 < horizontalMovement)
+        {
+          XCoord = XCoord + horizontalMovement * Speed;
+          State = PlayerState.Walking;
+        } 
+        if (verticalMovement < 0 || 0 < verticalMovement)
+        {
+          YCoord = YCoord - verticalMovement * Speed;
+          State = PlayerState.Walking;
+        }
+        
+        if (currentKeyboardState.IsKeyDown(Keys.D))
+        {
+          XCoord += Speed;
+          State = PlayerState.Walking;
+        }
+        if (currentKeyboardState.IsKeyDown(Keys.A))
+        {
+          XCoord -= Speed;
+          State = PlayerState.Walking;
+        }
+        if (currentKeyboardState.IsKeyDown(Keys.W))
+        {
+          YCoord -= Speed;
+          State = PlayerState.Walking;
+        }
+        if (currentKeyboardState.IsKeyDown(Keys.S))
+        {
+          YCoord += Speed;
+          State = PlayerState.Walking;
+        }
+      }
+      
+      if (currentGamePadState.Buttons.X == ButtonState.Pressed || currentMouseState.LeftButton == ButtonState.Pressed)
+      {
+        State = PlayerState.Chopping;
+      }
+      if (currentGamePadState.Buttons.A == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.F))
+      {
+        State = PlayerState.Feeding;
+      }
+    }
+    public void Update()
+    {
+      Move();
+    }
+
+    public void Draw(SpriteBatch spriteBatch)
+    {
+      spriteBatch.Begin();
+      // TODO: Draw Sprite
+      spriteBatch.End();
+    }
+  }
+}
