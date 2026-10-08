@@ -20,8 +20,8 @@ namespace JustTreesClone
         SpriteBatch spriteBatch;
 
         private Texture2D _boundBoxTexture;
-        private Tree tree;
-        private Spirit _treeSpirit;
+        private List<Tree> _trees;
+        private List<Spirit> _treeSpirits;
         private List<Player> _players;
         private Camera2D _camera2D;
         private SpriteFont _gameFont;
@@ -44,11 +44,17 @@ namespace JustTreesClone
             _boundBoxTexture = new Texture2D(GraphicsDevice, 1, 1);
             _boundBoxTexture.SetData(new Color[] { Color.White });
             _camera2D = new Camera2D(GraphicsDevice.Viewport);
-            
-            tree = new Tree();
-            _treeSpirit = new Spirit(Content);
+
+            _trees = new List<Tree>();
+            _treeSpirits = new List<Spirit>();
             _players = new List<Player>();
             
+            
+            for (int num = 0; num < 15; num++)
+            {
+                _trees.Add(new Tree());
+            }
+            _treeSpirits.Add(new Spirit(Content));
             _players.Add(new Player(Content));
 
             base.Initialize();
@@ -113,8 +119,11 @@ namespace JustTreesClone
                     9000
                 );
             }
-            
-            _treeSpirit.Update();
+
+            foreach (Spirit treeSpirit in _treeSpirits)
+            {
+                treeSpirit.Update();
+            }
 
             base.Update(gameTime);
         }
@@ -130,9 +139,16 @@ namespace JustTreesClone
             // TODO: Add your drawing code here
             
             spriteBatch.Begin(transformMatrix: _camera2D.GetTransform());
-            
-            spriteBatch.Draw(_boundBoxTexture, tree.GetBounds(), Color.LawnGreen);
-            spriteBatch.Draw(_boundBoxTexture, _treeSpirit.GetBounds(), Color.Fuchsia);
+
+            foreach (Tree tree in _trees)
+            {
+                spriteBatch.Draw(_boundBoxTexture, tree.GetBounds(), Color.LawnGreen);
+            }
+
+            foreach (Spirit treeSpirit in _treeSpirits)
+            {
+                spriteBatch.Draw(_boundBoxTexture, treeSpirit.GetBounds(), Color.Fuchsia);
+            }
             
             foreach(Player player in _players)
             {
