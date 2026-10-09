@@ -120,6 +120,18 @@ namespace JustTreesClone
                 );
             }
 
+            foreach (Tree tree in _trees)
+            {
+                if (tree.GetBounds().Intersects(_players[0].GetBounds()))
+                {
+                    tree.Update(Color.Yellow);
+                }
+                else
+                {
+                    tree.Update(Color.LawnGreen);
+                }
+            }
+
             foreach (Spirit treeSpirit in _treeSpirits)
             {
                 treeSpirit.Update();
