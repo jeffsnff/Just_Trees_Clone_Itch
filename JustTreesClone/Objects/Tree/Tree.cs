@@ -25,7 +25,19 @@ public class Tree
         return new Rectangle(XCoord, YCoord, 64, 64);
     }
 
-    public void Update()
+    public void Damage()
+    {
+        Health -= 1;
+    }
+
+    private void Dead()
+    {
+        if (Health <= 0)
+        {
+            IsAlive = false;
+        }
+    } 
+
     public void Update(Color color)
     {
         _color = color;
