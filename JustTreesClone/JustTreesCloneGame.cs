@@ -142,7 +142,7 @@ namespace JustTreesClone
 
             foreach (Tree tree in _trees)
             {
-                spriteBatch.Draw(_boundBoxTexture, tree.GetBounds(), Color.LawnGreen);
+                tree.Draw(spriteBatch, _boundBoxTexture);
             }
 
             foreach (Spirit treeSpirit in _treeSpirits)

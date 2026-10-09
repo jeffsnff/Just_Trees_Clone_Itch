@@ -11,6 +11,8 @@ public class Tree
     private int XCoord { get; set; }
     private int YCoord { get; set; }
 
+    private Color _color = Color.LawnGreen;
+
     public Tree()
     {
         Random rng = new Random();
@@ -24,14 +26,13 @@ public class Tree
     }
 
     public void Update()
+    public void Update(Color color)
     {
-        
+        _color = color;
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch, Texture2D boundBoxTexture)
     {
-        spriteBatch.Begin();
-        
-        spriteBatch.End();
+        spriteBatch.Draw(boundBoxTexture, GetBounds(), _color);
     }
 }
