@@ -102,11 +102,12 @@ namespace Just_Trees_Clone.Objects.Player
       Move();
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch, Texture2D boundingBoxTexture, SpriteFont gameFont)
     {
-      spriteBatch.Begin();
       // TODO: Draw Sprite
-      spriteBatch.End();
+      spriteBatch.DrawString(gameFont, "State: "+State, new Vector2(XCoord, YCoord - 32), Color.White);
+      spriteBatch.Draw(boundingBoxTexture, GetBounds(), Color.Red);
+      spriteBatch.DrawString(gameFont, "Left Clicked: "+LeftMouseClicked, new Vector2(XCoord, YCoord + 84), Color.White);
     }
   }
 }

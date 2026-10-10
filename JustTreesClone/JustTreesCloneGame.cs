@@ -174,8 +174,7 @@ namespace JustTreesClone
             
             foreach(Player player in _players)
             {
-                spriteBatch.Draw(_boundBoxTexture, player.GetBounds(), Color.Red);
-                spriteBatch.DrawString(_gameFont, "State: "+player.State, new Vector2(player.XCoord, player.YCoord - 32), Color.White);
+                player.Draw(spriteBatch, _boundBoxTexture, _gameFont);
             }
             
             spriteBatch.End();
