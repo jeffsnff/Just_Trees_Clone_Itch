@@ -8,8 +8,8 @@ public class Tree
 {
     public int Health { get; private set; } = 5;
     public bool IsAlive { get; private set; } = true;
-    private int XCoord { get; set; }
-    private int YCoord { get; set; }
+    public int XCoord { get; private set; }
+    public int YCoord { get; private set; }
 
     private Color _color = Color.LawnGreen;
 

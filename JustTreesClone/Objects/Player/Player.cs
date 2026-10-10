@@ -14,6 +14,7 @@ namespace Just_Trees_Clone.Objects.Player
     private float Speed { get; set; }
     public PlayerState State { get; private set; }
     private bool LeftMouseClicked { get; set; } = false;
+    public int NumberOfLogs { get; set; }
 
     public Player(ContentManager content)
     {
@@ -21,6 +22,7 @@ namespace Just_Trees_Clone.Objects.Player
       YCoord = 0;
       Speed = 5;
       State = PlayerState.Idel;
+      NumberOfLogs = 0;
     }
 
 
@@ -106,6 +108,7 @@ namespace Just_Trees_Clone.Objects.Player
     {
       // TODO: Draw Sprite
       spriteBatch.DrawString(gameFont, "State: "+State, new Vector2(XCoord, YCoord - 32), Color.White);
+      spriteBatch.DrawString(gameFont, "Num Logs: "+NumberOfLogs, new Vector2(XCoord+80, YCoord - 32), Color.White);
       spriteBatch.Draw(boundingBoxTexture, GetBounds(), Color.Red);
       spriteBatch.DrawString(gameFont, "Left Clicked: "+LeftMouseClicked, new Vector2(XCoord, YCoord + 84), Color.White);
     }

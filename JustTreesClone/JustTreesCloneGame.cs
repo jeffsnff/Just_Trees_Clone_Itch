@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Just_Trees_Clone.Objects.Tree;
+using Just_Trees_Clone.Objects.TreeLog;
 using Just_Trees_Clone.Objects.Spirit;
 using Just_Trees_Clone.Objects.Player;
 using Just_Trees_Clone.Objects.Helper;
@@ -23,6 +24,7 @@ namespace JustTreesClone
         private List<Tree> _trees;
         private List<Spirit> _treeSpirits;
         private List<Player> _players;
+        private List<TreeLog> _treeLogs;
         private Camera2D _camera2D;
         private SpriteFont _gameFont;
 
@@ -48,6 +50,7 @@ namespace JustTreesClone
             _trees = new List<Tree>();
             _treeSpirits = new List<Spirit>();
             _players = new List<Player>();
+            _treeLogs = new List<TreeLog>();
             
             
             for (int num = 0; num < 15; num++)
@@ -137,7 +140,20 @@ namespace JustTreesClone
 
                 if (!_trees[i].IsAlive)
                 {
+                    for(int index = 0; index < 5; index++) 
+                    {
+                        _treeLogs.Add(new TreeLog(_trees[i].XCoord + i, _trees[i].YCoord+i));
+                    }
                     _trees.RemoveAt(i);
+                }
+            }
+
+            for(int i = 0; i<_treeLogs.Count; i++)
+            {
+                if(_treeLogs[i].GetBounds().Intersects(_players[0].GetBounds()))
+                {
+                    _players[0].NumberOfLogs++;
+                    _treeLogs.RemoveAt(i);
                 }
             }
 
@@ -164,6 +180,11 @@ namespace JustTreesClone
             foreach (Tree tree in _trees)
             {
                 tree.Draw(spriteBatch, _boundBoxTexture, _gameFont);
+            }
+            
+            foreach(TreeLog log in _treeLogs)
+            {
+                log.Draw(spriteBatch, _boundBoxTexture);
             }
 
             foreach (Spirit treeSpirit in _treeSpirits)
