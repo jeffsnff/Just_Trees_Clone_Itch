@@ -124,14 +124,20 @@ namespace JustTreesClone
             {
                 if (_trees[i].GetBounds().Intersects(_players[0].GetBounds()))
                 {
-                    tree.Update(Color.Yellow);
                     _trees[i].Update(Color.Yellow);
+                    if (_players[0].State == PlayerState.Chopping)
+                    {
+                        _trees[i].TakeDamage();
+                    }
                 }
                 else
                 {
-                    tree.Update(Color.LawnGreen);
                     _trees[i].Update(Color.LawnGreen);
                 }
+
+                if (!_trees[i].IsAlive)
+                {
+                    _trees.RemoveAt(i);
                 }
             }
 

@@ -25,7 +25,7 @@ public class Tree
         return new Rectangle(XCoord, YCoord, 64, 64);
     }
 
-    public void Damage()
+    public void TakeDamage()
     {
         Health -= 1;
     }
@@ -41,6 +41,7 @@ public class Tree
     public void Update(Color color)
     {
         _color = color;
+        Dead();
     }
 
     public void Draw(SpriteBatch spriteBatch, Texture2D boundBoxTexture)
