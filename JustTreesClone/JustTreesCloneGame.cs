@@ -120,15 +120,18 @@ namespace JustTreesClone
                 );
             }
 
-            foreach (Tree tree in _trees)
+            for(int i = 0; i < _trees.Count; i++)
             {
-                if (tree.GetBounds().Intersects(_players[0].GetBounds()))
+                if (_trees[i].GetBounds().Intersects(_players[0].GetBounds()))
                 {
                     tree.Update(Color.Yellow);
+                    _trees[i].Update(Color.Yellow);
                 }
                 else
                 {
                     tree.Update(Color.LawnGreen);
+                    _trees[i].Update(Color.LawnGreen);
+                }
                 }
             }
 
@@ -154,6 +157,7 @@ namespace JustTreesClone
 
             foreach (Tree tree in _trees)
             {
+                spriteBatch.DrawString(_gameFont, "Health: "+tree.Health, new Vector2(tree.XCoord, tree.YCoord-20), Color.White);
                 tree.Draw(spriteBatch, _boundBoxTexture);
             }
 
