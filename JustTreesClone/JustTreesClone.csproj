@@ -24,6 +24,7 @@
 
     <ItemGroup>
         <Compile Include="Objects\Helper\Camera2D.cs" />
+        <Compile Include="Objects\TreeLog\TreeLog.cs" />
         <Compile Include="Objects\Player\Player.cs" />
         <Compile Include="Objects\Player\PlayerState.cs" />
         <Compile Include="Objects\Spirit\Spirit.cs" />
