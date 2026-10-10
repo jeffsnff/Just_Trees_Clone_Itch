@@ -8,8 +8,10 @@ public class Tree
 {
     public int Health { get; private set; } = 5;
     public bool IsAlive { get; private set; } = true;
-    private int XCoord { get; set; }
-    private int YCoord { get; set; }
+    public int XCoord { get; private set; }
+    public int YCoord { get; private set; }
+
+    private Color _color = Color.LawnGreen;
 
     public Tree()
     {
@@ -23,15 +25,28 @@ public class Tree
         return new Rectangle(XCoord, YCoord, 64, 64);
     }
 
-    public void Update()
+    public void TakeDamage()
     {
-        
+        Health -= 1;
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    private void Dead()
     {
-        spriteBatch.Begin();
-        
-        spriteBatch.End();
+        if (Health <= 0)
+        {
+            IsAlive = false;
+        }
+    } 
+
+    public void Update(Color color)
+    {
+        _color = color;
+        Dead();
+    }
+
+    public void Draw(SpriteBatch spriteBatch, Texture2D boundBoxTexture, SpriteFont gameFont)
+    {
+        spriteBatch.DrawString(gameFont, "Health: "+Health, new Vector2(XCoord, YCoord-20), Color.White);
+        spriteBatch.Draw(boundBoxTexture, GetBounds(), _color);
     }
 }

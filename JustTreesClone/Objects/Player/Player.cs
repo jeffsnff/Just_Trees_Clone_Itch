@@ -13,6 +13,8 @@ namespace Just_Trees_Clone.Objects.Player
     public float YCoord { get; private set; }
     private float Speed { get; set; }
     public PlayerState State { get; private set; }
+    private bool LeftMouseClicked { get; set; } = false;
+    public int NumberOfLogs { get; set; }
 
     public Player(ContentManager content)
     {
@@ -20,6 +22,7 @@ namespace Just_Trees_Clone.Objects.Player
       YCoord = 0;
       Speed = 5;
       State = PlayerState.Idel;
+      NumberOfLogs = 0;
     }
 
 
@@ -79,25 +82,35 @@ namespace Just_Trees_Clone.Objects.Player
         }
       }
       
-      if (currentGamePadState.Buttons.X == ButtonState.Pressed || currentMouseState.LeftButton == ButtonState.Pressed)
+      if (!LeftMouseClicked && (currentGamePadState.Buttons.X == ButtonState.Pressed ||
+                                currentMouseState.LeftButton == ButtonState.Pressed))
       {
         State = PlayerState.Chopping;
+        LeftMouseClicked = true;
       }
       if (currentGamePadState.Buttons.A == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.F))
       {
         State = PlayerState.Feeding;
       }
+
+      if (LeftMouseClicked && currentMouseState.LeftButton == ButtonState.Released)
+      {
+        LeftMouseClicked = false;
+      }
     }
     public void Update()
     {
+      State = PlayerState.Idel;
       Move();
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    public void Draw(SpriteBatch spriteBatch, Texture2D boundingBoxTexture, SpriteFont gameFont)
     {
-      spriteBatch.Begin();
       // TODO: Draw Sprite
-      spriteBatch.End();
+      spriteBatch.DrawString(gameFont, "State: "+State, new Vector2(XCoord, YCoord - 32), Color.White);
+      spriteBatch.DrawString(gameFont, "Num Logs: "+NumberOfLogs, new Vector2(XCoord+80, YCoord - 32), Color.White);
+      spriteBatch.Draw(boundingBoxTexture, GetBounds(), Color.Red);
+      spriteBatch.DrawString(gameFont, "Left Clicked: "+LeftMouseClicked, new Vector2(XCoord, YCoord + 84), Color.White);
     }
   }
 }
