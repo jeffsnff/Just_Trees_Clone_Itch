@@ -163,8 +163,7 @@ namespace JustTreesClone
 
             foreach (Tree tree in _trees)
             {
-                spriteBatch.DrawString(_gameFont, "Health: "+tree.Health, new Vector2(tree.XCoord, tree.YCoord-20), Color.White);
-                tree.Draw(spriteBatch, _boundBoxTexture);
+                tree.Draw(spriteBatch, _boundBoxTexture, _gameFont);
             }
 
             foreach (Spirit treeSpirit in _treeSpirits)

@@ -44,8 +44,9 @@ public class Tree
         Dead();
     }
 
-    public void Draw(SpriteBatch spriteBatch, Texture2D boundBoxTexture)
+    public void Draw(SpriteBatch spriteBatch, Texture2D boundBoxTexture, SpriteFont gameFont)
     {
+        spriteBatch.DrawString(gameFont, "Health: "+Health, new Vector2(XCoord, YCoord-20), Color.White);
         spriteBatch.Draw(boundBoxTexture, GetBounds(), _color);
     }
 }
