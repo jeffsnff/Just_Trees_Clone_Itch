@@ -13,6 +13,7 @@ namespace Just_Trees_Clone.Objects.Player
     public float YCoord { get; private set; }
     private float Speed { get; set; }
     public PlayerState State { get; private set; }
+    private bool LeftMouseClicked { get; set; } = false;
 
     public Player(ContentManager content)
     {
@@ -79,17 +80,25 @@ namespace Just_Trees_Clone.Objects.Player
         }
       }
       
-      if (currentGamePadState.Buttons.X == ButtonState.Pressed || currentMouseState.LeftButton == ButtonState.Pressed)
+      if (!LeftMouseClicked && (currentGamePadState.Buttons.X == ButtonState.Pressed ||
+                                currentMouseState.LeftButton == ButtonState.Pressed))
       {
         State = PlayerState.Chopping;
+        LeftMouseClicked = true;
       }
       if (currentGamePadState.Buttons.A == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.F))
       {
         State = PlayerState.Feeding;
       }
+
+      if (LeftMouseClicked && currentMouseState.LeftButton == ButtonState.Released)
+      {
+        LeftMouseClicked = false;
+      }
     }
     public void Update()
     {
+      State = PlayerState.Idel;
       Move();
     }
 
