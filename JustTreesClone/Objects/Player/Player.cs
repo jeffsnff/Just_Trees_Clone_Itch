@@ -14,6 +14,7 @@ namespace Just_Trees_Clone.Objects.Player
     private float Speed { get; set; }
     public PlayerState State { get; private set; }
     private bool LeftMouseClicked { get; set; } = false;
+    private bool FButtonClicked { get; set; } = false;
     public int NumberOfLogs { get; set; }
 
     public Player(ContentManager content)
@@ -88,14 +89,22 @@ namespace Just_Trees_Clone.Objects.Player
         State = PlayerState.Chopping;
         LeftMouseClicked = true;
       }
-      if (currentGamePadState.Buttons.A == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.F))
+      if (!FButtonClicked &&
+          (currentGamePadState.Buttons.A == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.F)))
       {
         State = PlayerState.Feeding;
+        NumberOfLogs--;
+        FButtonClicked = true;
       }
 
       if (LeftMouseClicked && currentMouseState.LeftButton == ButtonState.Released)
       {
         LeftMouseClicked = false;
+      }
+
+      if (FButtonClicked && currentKeyboardState.IsKeyUp(Keys.F))
+      {
+        FButtonClicked = false;
       }
     }
     public void Update()
