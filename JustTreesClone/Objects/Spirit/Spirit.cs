@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,10 +12,12 @@ namespace Just_Trees_Clone.Objects.Spirit
   {
     public float XCoord { get; private set; } = 50;
     public float YCoord { get; private set; } = 50;
-    private int Full { get; set; } = 0;
     public SpiritState State { get; private set; } = SpiritState.Idel;
     private int Speed { get; } = 1;
     private int MoveTimer { get; set; } = 0;
+    private int _hungerLevel = 0;
+    private readonly int _maxHungerLevel = 5;
+    private bool Full { get; set; } = false;
 
     public Spirit(ContentManager content)
     {
@@ -26,6 +29,17 @@ namespace Just_Trees_Clone.Objects.Spirit
       return new Rectangle((int) XCoord,(int) YCoord, 64, 64);
     }
 
+    public void Feed()
+    {
+      _hungerLevel++;
+      Debug.WriteLine($"Hunger Level: {_hungerLevel}");
+    }
+
+    public int HungerLevel
+    {
+      get => _hungerLevel;
+    }
+    
     public void Update()
     {
       if (MoveTimer >= 120)
@@ -65,9 +79,7 @@ namespace Just_Trees_Clone.Objects.Spirit
 
     public void Draw(SpriteBatch spriteBatch)
     {
-      spriteBatch.Begin();
       // TODO: Draw Sprite
-      spriteBatch.End();
     }
 
   }

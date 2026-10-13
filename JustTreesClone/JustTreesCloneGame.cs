@@ -27,6 +27,7 @@ namespace JustTreesClone
         private List<TreeLog> _treeLogs;
         private Camera2D _camera2D;
         private SpriteFont _gameFont;
+        private Color _treeSpiritColor;
 
         public JustTreesCloneGame()
         {
@@ -52,8 +53,9 @@ namespace JustTreesClone
             _players = new List<Player>();
             _treeLogs = new List<TreeLog>();
             
+            _treeSpiritColor = Color.Fuchsia;
             
-            for (int num = 0; num < 15; num++)
+            for (int num = 0; num < 2; num++)
             {
                 _trees.Add(new Tree());
             }
@@ -111,16 +113,34 @@ namespace JustTreesClone
             }
 
             // TODO: Add your update logic here
-            foreach(Player player in _players)
+            for(int playerIndex = 0; playerIndex < _players.Count; playerIndex++)
             {
-                player.Update();
+                _players[playerIndex].Update();
                 _camera2D.FollowClamped(
                     new Vector2(
-                        player.XCoord,
-                        player.YCoord),
+                        _players[playerIndex].XCoord,
+                        _players[playerIndex].YCoord),
                     9000,
                     9000
                 );
+                
+                // Feed the Tree Spirit
+                for (int spiritIndex = 0; spiritIndex < _treeSpirits.Count; spiritIndex++)
+                {
+                    if (_players[playerIndex].GetBounds().Intersects(_treeSpirits[spiritIndex].GetBounds()))
+                    {
+                        _treeSpiritColor = Color.Salmon;
+                        if (_players[playerIndex].State == PlayerState.Feeding && _players[playerIndex].NumberOfLogs > 0)
+                        {
+                            _treeSpirits[spiritIndex].Feed();
+                            _players[playerIndex].RemoveLogs();
+                        }
+                    }
+                    else
+                    {
+                        _treeSpiritColor = Color.Fuchsia;
+                    }
+                }
             }
 
             for(int i = 0; i < _trees.Count; i++)
@@ -189,7 +209,8 @@ namespace JustTreesClone
 
             foreach (Spirit treeSpirit in _treeSpirits)
             {
-                spriteBatch.Draw(_boundBoxTexture, treeSpirit.GetBounds(), Color.Fuchsia);
+                spriteBatch.DrawString(_gameFont, "Hunger Level: "+treeSpirit.HungerLevel, new Vector2(treeSpirit.XCoord, treeSpirit.YCoord-25), Color.White);
+                spriteBatch.Draw(_boundBoxTexture, treeSpirit.GetBounds(), _treeSpiritColor);
             }
             
             foreach(Player player in _players)
