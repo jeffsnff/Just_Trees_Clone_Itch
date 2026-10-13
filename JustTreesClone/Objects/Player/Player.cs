@@ -97,7 +97,6 @@ namespace Just_Trees_Clone.Objects.Player
           (currentGamePadState.Buttons.A == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.F)))
       {
         State = PlayerState.Feeding;
-        NumberOfLogs--;
         FButtonClicked = true;
       }
 

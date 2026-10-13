@@ -55,7 +55,7 @@ namespace JustTreesClone
             
             _treeSpiritColor = Color.Fuchsia;
             
-            for (int num = 0; num < 15; num++)
+            for (int num = 0; num < 2; num++)
             {
                 _trees.Add(new Tree());
             }
