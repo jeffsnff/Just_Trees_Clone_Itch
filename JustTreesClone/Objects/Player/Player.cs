@@ -26,6 +26,10 @@ namespace Just_Trees_Clone.Objects.Player
       NumberOfLogs = 0;
     }
 
+    public void RemoveLogs()
+    {
+      NumberOfLogs--;
+    }
 
     public Rectangle GetBounds()
     {
