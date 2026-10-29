@@ -24,6 +24,9 @@
 
     <ItemGroup>
         <Compile Include="Objects\Helper\Camera2D.cs" />
+        <Compile Include="Objects\Music\MediaControllers\NextButton.cs" />
+        <Compile Include="Objects\Music\MediaControllers\PlayButton.cs" />
+        <Compile Include="Objects\Music\MediaControllers\PreviousButton.cs" />
         <Compile Include="Objects\Music\MusicPlayer.cs" />
         <Compile Include="Objects\Music\MusicTrack.cs" />
         <Compile Include="Objects\TreeLog\TreeLog.cs" />

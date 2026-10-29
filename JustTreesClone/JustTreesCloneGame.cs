@@ -12,6 +12,8 @@ using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 
+using JustTreesClone.Objects.Music.MediaControllers;
+
 namespace JustTreesClone
 {
   /// <summary>
@@ -31,6 +33,12 @@ namespace JustTreesClone
     private Camera2D _camera2D;
     private SpriteFont _gameFont;
     private Color _treeSpiritColor;
+
+
+    private PlayButton _playButton;
+    private NextButton _nextButton;
+    //private PreviousButton _previousButton;
+    private MouseState _previousMouseState;
     
 
     public JustTreesCloneGame()
@@ -52,6 +60,10 @@ namespace JustTreesClone
       _boundBoxTexture.SetData(new Color[] { Color.White });
       _camera2D = new Camera2D(GraphicsDevice.Viewport);
       _backgroundMusic = new MusicPlayer(Content);
+      _playButton = new PlayButton(Content, new Vector2(0, 0));
+      _nextButton = new NextButton(Content, new Vector2(0, 0));
+      //_previousButton = new PreviousButton(Content, new Vector2(0, 0));
+      _previousMouseState = Mouse.GetState();
       
 
       _trees = new List<Tree>();
@@ -105,8 +117,21 @@ namespace JustTreesClone
         }
       }
 
-      _backgroundMusic.Update(keyboardState);
-      
+      if (_playButton.GetBounds().Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released)
+      {
+        _backgroundMusic.PlayMusic();
+      }
+
+      if(_nextButton.GetBounds().Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released)
+      {
+        _backgroundMusic.NextSong();
+      }
+
+      //if (_previousButton.GetBounds().Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released)
+      //{
+      //  _backgroundMusic.PreviousSong();
+      //}
+
 
       for (int playerIndex = 0; playerIndex < _players.Count; playerIndex++)
       {
@@ -177,6 +202,7 @@ namespace JustTreesClone
         treeSpirit.Update();
       }
 
+      _previousMouseState = mouseState;
       base.Update(gameTime);
     }
 
@@ -184,6 +210,7 @@ namespace JustTreesClone
     {
       GraphicsDevice.Clear(Color.CornflowerBlue);
 
+      // Draw World
       spriteBatch.Begin(transformMatrix: _camera2D.GetTransform());
       foreach (Tree tree in _trees)
       {
@@ -207,9 +234,14 @@ namespace JustTreesClone
       }
       spriteBatch.End();
 
+      // Draw Game UI
       spriteBatch.Begin();
+      //_previousButton.Draw(spriteBatch);
+      _playButton.Draw(spriteBatch);
+      _nextButton.Draw(spriteBatch);
       _backgroundMusic.Draw(spriteBatch, _gameFont, new Vector2(0,0));
       spriteBatch.End();
+
       base.Draw(gameTime);
     }
   }
