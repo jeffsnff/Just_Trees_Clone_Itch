@@ -13,6 +13,26 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Icons/Music/next.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Icons/Music/next.png
+
+#begin Icons/Music/pause.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Icons/Music/pause.png
+
+#begin Icons/Music/play.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Icons/Music/play.png
+
+#begin Icons/Music/previous.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Icons/Music/previous.png
+
 #begin Music/Adeline Yeo (HP) - With Hush Child Chill Vibes Lofi Music Collaboration.mp3
 /importer:Mp3Importer
 /processor:SongProcessor

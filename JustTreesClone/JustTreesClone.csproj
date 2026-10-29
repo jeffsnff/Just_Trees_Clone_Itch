@@ -25,6 +25,7 @@
     <ItemGroup>
         <Compile Include="Objects\Helper\Camera2D.cs" />
         <Compile Include="Objects\Music\MusicPlayer.cs" />
+        <Compile Include="Objects\Music\MusicTrack.cs" />
         <Compile Include="Objects\TreeLog\TreeLog.cs" />
         <Compile Include="Objects\Player\Player.cs" />
         <Compile Include="Objects\Player\PlayerState.cs" />
