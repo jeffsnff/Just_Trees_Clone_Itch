@@ -13,7 +13,7 @@ namespace JustTreesClone.Objects.Music.MediaControllers
 
     public NextButton(ContentManager Content, Vector2 screenUI)
     {
-      _next = Content.Load<Texture2D>("icons/music/next");
+      _next = Content.Load<Texture2D>("Icons/Music/next");
       _xCoord = (int)screenUI.X + 64;
       _yCoord = (int)screenUI.Y + 15;
     }
