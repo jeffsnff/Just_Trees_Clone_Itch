@@ -15,10 +15,9 @@ namespace JustTreesClone.Objects.Music
 
     public MusicPlayer(ContentManager Content)
     {
-      _backgroundMusic.Add(new MusicTrack(Content.Load<Song>("music/Adeline Yeo (HP) - With Hush Child Chill Vibes Lofi Music Collaboration"), "With Hush Child"));
-      _backgroundMusic.Add(new MusicTrack(Content.Load<Song>("music/snoozy beats - lofi autumn days"), "Lofi Autumn Days"));
-      _backgroundMusic.Add(new MusicTrack(Content.Load<Song>("music/snoozy beats - lofi mood [chill lofi]"), "Lofi Mood [Chill Lofi]"));
-      _backgroundMusic.Add(new MusicTrack(Content.Load<Song>("music/snoozy beats - lofi piano beat"), "Lofi Piano Beat"));
+      _backgroundMusic.Add(new MusicTrack(Content.Load<Song>("Music/snoozy beats - lofi autumn days"), "Lofi Autumn Days"));
+      _backgroundMusic.Add(new MusicTrack(Content.Load<Song>("Music/snoozy beats - lofi mood [chill lofi]"), "Lofi Mood [Chill Lofi]"));
+      _backgroundMusic.Add(new MusicTrack(Content.Load<Song>("Music/snoozy beats - lofi piano beat"), "Lofi Piano Beat"));
 
       MediaPlayer.Volume = 0.50f;
     }

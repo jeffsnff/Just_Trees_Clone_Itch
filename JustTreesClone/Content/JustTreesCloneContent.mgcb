@@ -28,11 +28,6 @@
 /processor:TextureProcessor
 /build:Icons/Music/play.png
 
-#begin Music/Adeline Yeo (HP) - With Hush Child Chill Vibes Lofi Music Collaboration.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/build:Music/Adeline Yeo (HP) - With Hush Child Chill Vibes Lofi Music Collaboration.mp3
-
 #begin Music/snoozy beats - lofi autumn days.mp3
 /importer:Mp3Importer
 /processor:SongProcessor

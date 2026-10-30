@@ -13,7 +13,7 @@ namespace JustTreesClone.Objects.Music.MediaControllers
 
     public PlayButton(ContentManager Content, Vector2 screenUI)
     {
-      _play = Content.Load<Texture2D>("icons/music/play");
+      _play = Content.Load<Texture2D>("Icons/Music/play");
       XCoord = (int)screenUI.X + 36;
       YCoord = (int)screenUI.Y + 15;
     }
