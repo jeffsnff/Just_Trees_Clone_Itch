@@ -20,7 +20,7 @@ namespace JustTreesClone.Objects.Music.MediaControllers
 
     public Rectangle GetBounds()
     {
-      return new Rectangle(_xCoord, _yCoord, 64, 64);
+      return new Rectangle(_xCoord, _yCoord, 25, 25);
     }
 
     public void Draw(SpriteBatch spriteBatch)
