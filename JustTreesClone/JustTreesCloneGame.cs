@@ -37,9 +37,10 @@ namespace JustTreesClone
 
     private PlayButton _playButton;
     private NextButton _nextButton;
-    //private PreviousButton _previousButton;
+    private PreviousButton _previousButton;
     private MouseState _previousMouseState;
-    
+    private Texture2D _boundingBoxTexture;
+
 
     public JustTreesCloneGame()
     {
@@ -62,7 +63,7 @@ namespace JustTreesClone
       _backgroundMusic = new MusicPlayer(Content);
       _playButton = new PlayButton(Content, new Vector2(0, 0));
       _nextButton = new NextButton(Content, new Vector2(0, 0));
-      //_previousButton = new PreviousButton(Content, new Vector2(0, 0));
+      _previousButton = new PreviousButton(Content, new Vector2(0, 0));
       _previousMouseState = Mouse.GetState();
       
 
@@ -79,8 +80,10 @@ namespace JustTreesClone
       }
       _treeSpirits.Add(new Spirit(Content));
       _players.Add(new Player(Content));
-      
 
+
+      _boundingBoxTexture = new Texture2D(GraphicsDevice, 1, 1);
+      _boundingBoxTexture.SetData(new Color[] { Color.White });
       base.Initialize();
     }
 
@@ -127,10 +130,10 @@ namespace JustTreesClone
         _backgroundMusic.NextSong();
       }
 
-      //if (_previousButton.GetBounds().Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released)
-      //{
-      //  _backgroundMusic.PreviousSong();
-      //}
+      if (_previousButton.GetBounds().Contains(mouseState.Position) && mouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released)
+      {
+        _backgroundMusic.PreviousSong();
+      }
 
 
       for (int playerIndex = 0; playerIndex < _players.Count; playerIndex++)
@@ -236,12 +239,19 @@ namespace JustTreesClone
 
       // Draw Game UI
       spriteBatch.Begin();
-      //_previousButton.Draw(spriteBatch);
+      
+      // Draw Hitbox
+      //spriteBatch.Draw(_boundBoxTexture, _previousButton.GetBounds(), Color.Red);
+      //spriteBatch.Draw(_boundBoxTexture, _playButton.GetBounds(), Color.Red);
+      //spriteBatch.Draw(_boundBoxTexture, _nextButton.GetBounds(), Color.Red);
+
+      _previousButton.Draw(spriteBatch);
       _playButton.Draw(spriteBatch);
       _nextButton.Draw(spriteBatch);
       _backgroundMusic.Draw(spriteBatch, _gameFont, new Vector2(0,0));
+      
+      
       spriteBatch.End();
-
       base.Draw(gameTime);
     }
   }
