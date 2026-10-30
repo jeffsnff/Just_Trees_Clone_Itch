@@ -25,12 +25,17 @@ namespace JustTreesClone.Objects.Music
 
     public void PlayMusic()
     {
-      if (MediaPlayer.State == MediaState.Playing)
+      switch (MediaPlayer.State)
       {
-        MediaPlayer.Stop();
-      }else if (MediaPlayer.State == MediaState.Stopped)
-      {
-        MediaPlayer.Play(_backgroundMusic[_track].Song);
+        case MediaState.Stopped:
+          MediaPlayer.Play(_backgroundMusic[_track].Song);
+          break;
+        case MediaState.Paused:
+          MediaPlayer.Resume();
+          break;
+        case MediaState.Playing:
+          MediaPlayer.Pause();
+          break;
       }
     }
 
@@ -49,7 +54,7 @@ namespace JustTreesClone.Objects.Music
     {
       MediaPlayer.Stop();
       _track--;
-      if (_track == 0)
+      if (_track == -1)
       {
         _track = _backgroundMusic.Count - 1;
       }
@@ -61,7 +66,7 @@ namespace JustTreesClone.Objects.Music
       spriteBatch.DrawString(
         gameFont, _backgroundMusic[_track].Name,
         new Vector2(screenUI.X+100,screenUI.Y+22),
-        Color.Red
+        Color.Black
       );
     }
   }
