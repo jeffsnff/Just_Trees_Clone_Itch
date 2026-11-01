@@ -48,6 +48,11 @@
 /processor:TextureProcessor
 /build:Sprites/Player/playerSpriteSheet.png
 
+#begin Sprites/Tree/Trees.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Tree/Trees.png
+
 #begin GameFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
