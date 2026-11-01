@@ -143,7 +143,7 @@ namespace Just_Trees_Clone.Objects.Player
         }
 
 
-        if (State == PlayerState.Idel)
+        if (State == PlayerState.Idel || State == PlayerState.Feeding)
         {
           _animationRow = 0;
         }
