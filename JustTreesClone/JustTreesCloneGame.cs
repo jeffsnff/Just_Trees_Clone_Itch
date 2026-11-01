@@ -250,6 +250,8 @@ namespace JustTreesClone
       _nextButton.Draw(spriteBatch);
       _backgroundMusic.Draw(spriteBatch, _gameFont, new Vector2(0,0));
       
+      spriteBatch.DrawString(_gameFont, "Logs: " + _players[0].NumberOfLogs, new Vector2(17, 0), Color.Black);
+
       
       spriteBatch.End();
       base.Draw(gameTime);

@@ -167,13 +167,6 @@ namespace Just_Trees_Clone.Objects.Player
 
     public void Draw(SpriteBatch spriteBatch, Texture2D boundingBoxTexture, SpriteFont gameFont)
     {
-      // TODO: Draw Sprite
-      spriteBatch.DrawString(gameFont, "State: "+State, new Vector2(XCoord, YCoord - 32), Color.White);
-      spriteBatch.DrawString(gameFont, "Num Logs: "+NumberOfLogs, new Vector2(XCoord+80, YCoord - 32), Color.White);
-      spriteBatch.Draw(boundingBoxTexture, GetBounds(), Color.Red);
-
-
-
       spriteBatch.Draw
         (
           _playerSprite,
@@ -186,10 +179,6 @@ namespace Just_Trees_Clone.Objects.Player
           _spriteFlip,
           0
         );
-
-
-
-      spriteBatch.DrawString(gameFont, "Left Clicked: "+LeftMouseClicked, new Vector2(XCoord, YCoord + 84), Color.White);
     }
   }
 }
