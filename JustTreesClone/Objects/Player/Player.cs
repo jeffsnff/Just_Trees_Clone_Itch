@@ -40,31 +40,15 @@ namespace Just_Trees_Clone.Objects.Player
     {
       KeyboardState currentKeyboardState = Keyboard.GetState();
       MouseState currentMouseState = Mouse.GetState();
-      GamePadState currentGamePadState = GamePad.GetState(PlayerIndex.One);
-      float horizontalMovement = currentGamePadState.ThumbSticks.Left.X;
-      float verticalMovement = currentGamePadState.ThumbSticks.Left.Y;
       
-      if (currentGamePadState.Buttons.X != ButtonState.Pressed && 
-          currentGamePadState.Buttons.A != ButtonState.Pressed &&
-          currentKeyboardState.IsKeyUp(Keys.F) &&
+      if (currentKeyboardState.IsKeyUp(Keys.F) &&
           currentMouseState.LeftButton != ButtonState.Pressed
           )
         State = PlayerState.Idel;
       
       
       if (State == PlayerState.Idel)
-      {
-        if (horizontalMovement < 0 || 0 < horizontalMovement)
-        {
-          XCoord = XCoord + horizontalMovement * Speed;
-          State = PlayerState.Walking;
-        } 
-        if (verticalMovement < 0 || 0 < verticalMovement)
-        {
-          YCoord = YCoord - verticalMovement * Speed;
-          State = PlayerState.Walking;
-        }
-        
+      { 
         if (currentKeyboardState.IsKeyDown(Keys.D))
         {
           XCoord += Speed;
@@ -87,14 +71,12 @@ namespace Just_Trees_Clone.Objects.Player
         }
       }
       
-      if (!LeftMouseClicked && (currentGamePadState.Buttons.X == ButtonState.Pressed ||
-                                currentMouseState.LeftButton == ButtonState.Pressed))
+      if (!LeftMouseClicked && currentMouseState.LeftButton == ButtonState.Pressed)
       {
         State = PlayerState.Chopping;
         LeftMouseClicked = true;
       }
-      if (!FButtonClicked &&
-          (currentGamePadState.Buttons.A == ButtonState.Pressed || currentKeyboardState.IsKeyDown(Keys.F)))
+      if (!FButtonClicked && currentKeyboardState.IsKeyDown(Keys.F))
       {
         State = PlayerState.Feeding;
         FButtonClicked = true;
