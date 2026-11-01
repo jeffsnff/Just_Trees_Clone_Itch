@@ -34,6 +34,8 @@ namespace JustTreesClone
     private SpriteFont _gameFont;
     private Color _treeSpiritColor;
 
+    private Vector2 _worldSize = new Vector2(1000,1000);
+
 
     private PlayButton _playButton;
     private NextButton _nextButton;
@@ -74,9 +76,15 @@ namespace JustTreesClone
 
       _treeSpiritColor = Color.Fuchsia;
 
-      for (int num = 0; num < 2; num++)
+      // Adds tree to the world
+      for (int row = (int)-_worldSize.X; row < _worldSize.X; row = row + 177)
       {
-        _trees.Add(new Tree());
+        for(int column = (int)-_worldSize.Y; column < _worldSize.Y; column = column + 253)
+        {
+          _trees.Add(new Tree(row, column, Content));
+          column = column + 27;
+          row = row + 12;
+      }
       }
       _treeSpirits.Add(new Spirit(Content));
       _players.Add(new Player(Content));
@@ -143,8 +151,8 @@ namespace JustTreesClone
             new Vector2(
                 _players[playerIndex].XCoord,
                 _players[playerIndex].YCoord),
-            9000,
-            9000
+            (int)_worldSize.X,
+            (int)_worldSize.Y
         );
 
         // Feed the Tree Spirit
