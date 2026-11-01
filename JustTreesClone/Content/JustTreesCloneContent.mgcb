@@ -43,6 +43,11 @@
 /processor:SongProcessor
 /build:Music/snoozy beats - lofi piano beat.mp3
 
+#begin Sprites/Player/playerSpriteSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/build:Sprites/Player/playerSpriteSheet.png
+
 #begin GameFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
