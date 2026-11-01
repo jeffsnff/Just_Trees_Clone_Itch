@@ -14,7 +14,7 @@ namespace Just_Trees_Clone.Objects.Player
     private float Speed { get; set; }
     public PlayerState State { get; private set; }
     private bool LeftMouseClicked { get; set; } = false;
-    private bool FButtonClicked { get; set; } = false;
+    private bool RightButtonClicked { get; set; } = false;
     public int NumberOfLogs { get; set; }
 
     public bool ChopDamageApplied { get; private set; }
@@ -95,6 +95,7 @@ namespace Just_Trees_Clone.Objects.Player
         }
       }
 
+      // Chopping Logic
       if (!LeftMouseClicked && currentMouseState.LeftButton == ButtonState.Pressed)
       {
         State = PlayerState.Chopping;
@@ -104,10 +105,12 @@ namespace Just_Trees_Clone.Objects.Player
         _animationTimer = 0;
         LeftMouseClicked = true;
       }
-      if (!FButtonClicked && currentKeyboardState.IsKeyDown(Keys.F))
+      
+      // Feeding Logic
+      if (!RightButtonClicked && currentMouseState.RightButton == ButtonState.Pressed)
       {
         State = PlayerState.Feeding;
-        FButtonClicked = true;
+        RightButtonClicked = true;
       }
 
       if (LeftMouseClicked && currentMouseState.LeftButton == ButtonState.Released)
@@ -115,9 +118,9 @@ namespace Just_Trees_Clone.Objects.Player
         LeftMouseClicked = false;
       }
 
-      if (FButtonClicked && currentKeyboardState.IsKeyUp(Keys.F))
+      if (RightButtonClicked && currentMouseState.RightButton == ButtonState.Released)
       {
-        FButtonClicked = false;
+        RightButtonClicked = false;
       }
 
       _animationTimer++;
