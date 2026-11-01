@@ -35,6 +35,7 @@
         <Compile Include="Objects\Spirit\Spirit.cs" />
         <Compile Include="Objects\Spirit\SpiritState.cs" />
         <Compile Include="Objects\Tree\Tree.cs" />
+        <Compile Include="Objects\Tree\TreeState.cs" />
         <Compile Include="Pages\Index.razor.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="JustTreesCloneGame.cs" />
