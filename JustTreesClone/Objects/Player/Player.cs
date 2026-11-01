@@ -12,12 +12,13 @@ namespace Just_Trees_Clone.Objects.Player
     public float XCoord { get; private set; }
     public float YCoord { get; private set; }
     private float Speed { get; set; }
-    public PlayerState State { get; private set; }
+    private PlayerState State { get; set; }
     private bool LeftMouseClicked { get; set; } = false;
     private bool RightButtonClicked { get; set; } = false;
-    public int NumberOfLogs { get; set; }
+    public int NumberOfLogs { get; private set; }
 
     public bool ChopDamageApplied { get; private set; }
+    private bool FedLog { get; set; }
 
     private bool _isChopping;
 
@@ -49,11 +50,22 @@ namespace Just_Trees_Clone.Objects.Player
       return false;
     }
 
-    public void RemoveLogs()
+    public bool FeedSpirit()
     {
-      NumberOfLogs--;
+
+      if(State == PlayerState.Feeding && !FedLog && NumberOfLogs > 0)
+      {
+        FedLog = true;
+        NumberOfLogs--;
+        return true;
+      }
+      return false;
     }
 
+    public void PickUpLogs()
+    {
+      NumberOfLogs++;
+    }
     public Rectangle GetBounds()
     {
       return new Rectangle((int) XCoord+60, (int) YCoord+45, 35, 35);
@@ -110,6 +122,7 @@ namespace Just_Trees_Clone.Objects.Player
       if (!RightButtonClicked && currentMouseState.RightButton == ButtonState.Pressed)
       {
         State = PlayerState.Feeding;
+        FedLog = false;
         RightButtonClicked = true;
       }
 

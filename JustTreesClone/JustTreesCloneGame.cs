@@ -153,10 +153,9 @@ namespace JustTreesClone
           if (_players[playerIndex].GetBounds().Intersects(_treeSpirits[spiritIndex].GetBounds()))
           {
             _treeSpiritColor = Color.Salmon;
-            if (_players[playerIndex].State == PlayerState.Feeding && _players[playerIndex].NumberOfLogs > 0)
+            if (_players[playerIndex].FeedSpirit())
             {
               _treeSpirits[spiritIndex].Feed();
-              _players[playerIndex].RemoveLogs();
             }
           }
           else
@@ -195,7 +194,7 @@ namespace JustTreesClone
       {
         if (_treeLogs[i].GetBounds().Intersects(_players[0].GetBounds()))
         {
-          _players[0].NumberOfLogs++;
+          _players[0].PickUpLogs();
           _treeLogs.RemoveAt(i);
         }
       }
@@ -249,10 +248,10 @@ namespace JustTreesClone
       _playButton.Draw(spriteBatch);
       _nextButton.Draw(spriteBatch);
       _backgroundMusic.Draw(spriteBatch, _gameFont, new Vector2(0,0));
-      
+
       spriteBatch.DrawString(_gameFont, "Logs: " + _players[0].NumberOfLogs, new Vector2(17, 0), Color.Black);
 
-      
+
       spriteBatch.End();
       base.Draw(gameTime);
     }
