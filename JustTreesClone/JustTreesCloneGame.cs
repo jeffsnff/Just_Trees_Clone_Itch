@@ -171,7 +171,7 @@ namespace JustTreesClone
         if (_trees[i].GetBounds().Intersects(_players[0].GetBounds()))
         {
           _trees[i].Update(Color.Yellow);
-          if (_players[0].State == PlayerState.Chopping)
+          if (_players[0].ChopTree())
           {
             _trees[i].TakeDamage();
           }

@@ -17,6 +17,10 @@ namespace Just_Trees_Clone.Objects.Player
     private bool FButtonClicked { get; set; } = false;
     public int NumberOfLogs { get; set; }
 
+    public bool ChopDamageApplied { get; private set; }
+
+    private bool _isChopping;
+
     private Texture2D _playerSprite;
     private int _animationTimer, _animationIndex, _animationRow;
     private SpriteEffects _spriteFlip = SpriteEffects.None;
@@ -35,6 +39,16 @@ namespace Just_Trees_Clone.Objects.Player
       _animationRow = 0;
     }
 
+    public bool ChopTree()
+    {
+      if(State == PlayerState.Chopping && _animationIndex == 4 && !ChopDamageApplied)
+      {
+        ChopDamageApplied = true;
+        return true;
+      }
+      return false;
+    }
+
     public void RemoveLogs()
     {
       NumberOfLogs--;
@@ -49,6 +63,11 @@ namespace Just_Trees_Clone.Objects.Player
     {
       KeyboardState currentKeyboardState = Keyboard.GetState();
       MouseState currentMouseState = Mouse.GetState();
+
+      if (_isChopping)
+      {
+        State = PlayerState.Chopping;
+      }
 
       if (State == PlayerState.Idel)
       {
@@ -79,6 +98,10 @@ namespace Just_Trees_Clone.Objects.Player
       if (!LeftMouseClicked && currentMouseState.LeftButton == ButtonState.Pressed)
       {
         State = PlayerState.Chopping;
+        _isChopping = true;
+        ChopDamageApplied = false;
+        _animationIndex = 0;
+        _animationTimer = 0;
         LeftMouseClicked = true;
       }
       if (!FButtonClicked && currentKeyboardState.IsKeyDown(Keys.F))
@@ -112,6 +135,8 @@ namespace Just_Trees_Clone.Objects.Player
         if (State == PlayerState.Chopping && _animationIndex >= 6)
         {
           _animationIndex = 0;
+          _isChopping = false;
+          State = PlayerState.Idel;
         }
 
 
