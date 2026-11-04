@@ -27,7 +27,7 @@ public class Tree
 
   public Rectangle GetBounds()
   {
-    return new Rectangle(XCoord, YCoord, 55, 75);
+    return new Rectangle(XCoord+65, YCoord+200, 65, 75);
   }
 
   public void TakeDamage()
@@ -51,8 +51,10 @@ public class Tree
 
   public void Draw(SpriteBatch spriteBatch, Texture2D boundBoxTexture, SpriteFont gameFont)
   {
-    spriteBatch.DrawString(gameFont, "Health: " + Health, new Vector2(XCoord, YCoord - 20), Color.White);
-    spriteBatch.Draw(boundBoxTexture, GetBounds(), _color);
-    spriteBatch.Draw(_sprite, new Vector2(XCoord, YCoord), new Rectangle(_animationIndex * 50, _animationRow * 96, 54, 96), Color.White, 0.0f, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+    spriteBatch.DrawString(gameFont, "Health: " + Health, new Vector2(XCoord, YCoord - 15), Color.White);
+    
+     spriteBatch.Draw(boundBoxTexture, GetBounds(), _color);
+    spriteBatch.Draw(_sprite, new Vector2(XCoord, YCoord), new Rectangle(_animationIndex * 50, _animationRow * 96, 54, 96), Color.White, 0.0f, new Vector2(0, 0), 3.5f, SpriteEffects.None, 0);
+    
   }
 }
