@@ -68,7 +68,7 @@ namespace Just_Trees_Clone.Objects.Player
     }
     public Rectangle GetBounds()
     {
-      return new Rectangle((int) XCoord+60, (int) YCoord+45, 35, 35);
+      return new Rectangle((int) XCoord+90, (int) YCoord+65, 55, 65);
     }
 
     private void Move()
@@ -180,6 +180,8 @@ namespace Just_Trees_Clone.Objects.Player
 
     public void Draw(SpriteBatch spriteBatch, Texture2D boundingBoxTexture, SpriteFont gameFont)
     {
+
+      spriteBatch.Draw(boundingBoxTexture, GetBounds(), Color.Purple);
       spriteBatch.Draw
         (
           _playerSprite,
@@ -188,7 +190,7 @@ namespace Just_Trees_Clone.Objects.Player
           Color.White,
           0.0f,
           new Vector2(0, 0),
-          2.0f,
+          3.0f,
           _spriteFlip,
           0
         );

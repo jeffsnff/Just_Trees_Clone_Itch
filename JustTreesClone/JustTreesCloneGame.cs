@@ -221,7 +221,7 @@ namespace JustTreesClone
       GraphicsDevice.Clear(Color.CornflowerBlue);
 
       // Draw World
-      spriteBatch.Begin(transformMatrix: _camera2D.GetTransform());
+      spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, transformMatrix: _camera2D.GetTransform());
       foreach (Tree tree in _trees)
       {
         tree.Draw(spriteBatch, _boundBoxTexture, _gameFont);
